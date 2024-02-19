@@ -1,5 +1,5 @@
-import { TableItem } from "../../types/table";
-import { ASSET_CLASS,PRICE, TICKER } from '../../../../constants';
+import { TableItem } from '../../components/Table/types/table';
+import { ASSET_CLASS,PRICE, TICKER } from '../../constants';
 
 export enum SortActionType {
     SORT = 'SORT',

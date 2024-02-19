@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { fetchData } from '../../../api/tableDataService';
-import { TableItem } from '../types/table';
+import { fetchData } from '../api/tableDataService';
+import { TableItem } from '../components/Table/types/table';
 
 export const useTableData = () => {
     const [data, setData] = useState<TableItem[]>([]);

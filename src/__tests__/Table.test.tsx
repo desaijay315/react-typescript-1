@@ -2,11 +2,11 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Table from '../components/Table/Table';
-import * as hooks from '../components/Table/hooks';
+import * as hooks from '../hooks';
 import { mockData } from './testData/mockData';
 
 // Mock the hooks
-jest.mock('../components/Table/hooks', () => ({
+jest.mock('../hooks', () => ({
     useTableData: jest.fn(),
     useSort: jest.fn()
   }));
@@ -28,6 +28,10 @@ beforeEach(() => {
     }));
   });
 
+afterEach(() => {
+    jest.clearAllMocks();
+})
+
 test('table loads and displays data correctly', async () => {
   render(<Table />);
 
@@ -44,7 +48,7 @@ test('table loads and displays data correctly', async () => {
 });
 
 test('sorts by asset class on column header click', async () => {
-    // Define toggleSort mock function
+    
     const toggleSort = jest.fn();
 
     // Mock useTableData to return predefined data
@@ -53,71 +57,64 @@ test('sorts by asset class on column header click', async () => {
         fetchData: jest.fn(() => Promise.resolve(mockData)),
     });
 
-    // Important: Use the same toggleSort mock function in useSort mock
+
     (hooks.useSort as jest.Mock).mockImplementation(() => ({
         sortedData: mockData,
-        toggleSort, // Use the mock function defined above
+        toggleSort, 
         sortConfig: { assetClass: 'asc', price: 'none', ticker: 'none' },
     }));
 
     render(<Table />);
 
-    // Simulate user clicking on the "Asset Class" column header
-    const assetClassHeader = screen.getByText(/Asset Class/); // Adjusted for better targeting
+
+    const assetClassHeader = screen.getByText(/Asset Class/); 
     fireEvent.click(assetClassHeader);
 
-    // Verify toggleSort was called with the correct argument
     expect(toggleSort).toHaveBeenCalledWith('assetClass');
 });
 
 test('sorts by price on column header click', async () => {
-    // Define toggleSort mock function
     const toggleSort = jest.fn();
 
-    // Mock useTableData to return predefined data
     (hooks.useTableData as jest.Mock).mockReturnValue({
         data: mockData,
         fetchData: jest.fn(() => Promise.resolve(mockData)),
     });
 
-    // Important: Use the same toggleSort mock function in useSort mock
     (hooks.useSort as jest.Mock).mockImplementation(() => ({
         sortedData: mockData,
-        toggleSort, // Use the mock function defined above
+        toggleSort,
         sortConfig: { assetClass: 'none', price: 'asc', ticker: 'none' },
     }));
 
     render(<Table />);
 
-    // Simulate user clicking on the "Asset Class" column header
-    const assetClassHeader = screen.getByText(/Price/); // Adjusted for better targeting
+    const assetClassHeader = screen.getByText(/Price/); 
     fireEvent.click(assetClassHeader);
 
-    // Verify toggleSort was called with the correct argument
     expect(toggleSort).toHaveBeenCalledWith('price');
 });
 
 
 test('sorts by ticker on column header click', async () => {
-    // Define toggleSort mock function
+    
     const toggleSort = jest.fn();
 
-    // Mock useTableData to return predefined data
     (hooks.useTableData as jest.Mock).mockReturnValue({
         data: mockData,
         fetchData: jest.fn(() => Promise.resolve(mockData)),
     });
 
-    // Important: Use the same toggleSort mock function in useSort mock
+
     (hooks.useSort as jest.Mock).mockImplementation(() => ({
         sortedData: mockData,
-        toggleSort, // Use the mock function defined above
+        toggleSort, 
         sortConfig: { assetClass: 'none', price: 'desc', ticker: 'asc' },
     }));
 
     render(<Table />);
 
-    const assetClassHeader = screen.getByText(/Ticker/); // Adjusted for better targeting
+    const assetClassHeader = screen.getByText(/Ticker/); 
     fireEvent.click(assetClassHeader);
     expect(toggleSort).toHaveBeenCalledWith('ticker');
 });
@@ -125,8 +122,8 @@ test('sorts by ticker on column header click', async () => {
 
 test('renders negative price values with negativePrice class', async () => {
     const mockData = [
-        { assetClass: 'Equities', price: 120, ticker: 'AAPL' },
-        { assetClass: 'Credits', price: -100, ticker: 'GOOGL' } // Negative price
+        { assetClass: 'Equities', price: 120, ticker: 'ALPHA' },
+        { assetClass: 'Credit', price: -100, ticker: 'BETA' }
     ];
 
     (hooks.useTableData as jest.Mock).mockReturnValue({

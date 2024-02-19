@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
-import { useTableData, useSort } from './hooks';
-import { TableSchema } from './types/table';
+import { useTableData, useSort } from '../../hooks';
 import '../../styles/Table.css';
 
 

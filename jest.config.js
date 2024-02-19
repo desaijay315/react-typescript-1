@@ -8,7 +8,6 @@ module.exports = {
     coverageDirectory: "coverage/jest",
     transformIgnorePatterns: [".*(node_modules).*$"],
     transform: {
-      "^.+\\.(js|jsx)?$": "babel-jest",
       "^.+\\.tsx?$": "ts-jest",
     },
     testEnvironment: "jsdom",

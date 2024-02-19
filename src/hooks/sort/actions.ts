@@ -1,5 +1,5 @@
-import { SET_DATA, TOGGLE_SORT } from '../../../../constants';
-import { TableItem } from '../../types/table';
+import { SET_DATA, TOGGLE_SORT } from '../../constants';
+import { TableItem } from '../../components/Table/types/table';
 import { ColumnName } from './types';
 
 

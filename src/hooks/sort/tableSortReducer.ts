@@ -1,6 +1,6 @@
 import { SortAction, SortState } from './types';
-import { sortDirectionToggle } from '../../../../utils/sorting'; 
-import { ASSET_CLASS_ORDER, TOGGLE_SORT, SET_DATA, ASC, DESC, NONE, ASSET_CLASS, PRICE, TICKER } from '../../../../constants';
+import { sortDirectionToggle } from '../../utils/sorting'; 
+import { ASSET_CLASS_ORDER, TOGGLE_SORT, SET_DATA, ASC, DESC, NONE, ASSET_CLASS, PRICE, TICKER } from '../../constants';
 
 export const tableSortReducer = (state: SortState, action: SortAction): SortState => {
     switch (action.type) {
