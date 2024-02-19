@@ -20,3 +20,27 @@
   background-color: #343a40; /* Dark background for header */
   color: #fff; /* White text color */
 }
+
+
+.equities {
+  background-color: blue;
+  color: white; /* Ensures text is readable on blue background */
+}
+
+.credit {
+  background-color: green;
+  color: white; /* Ensures text is readable on green background */
+}
+
+.macro {
+  background-color: white;
+  color: black; /* Default, but added for clarity */
+}
+
+.positivePrice {
+  color: black;
+}
+
+.negativePrice {
+  color: red;
+}
