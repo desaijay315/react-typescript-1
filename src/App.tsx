@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './style.css';
+import Table from './components/Table/Table';
+import { tableSchema } from './components/Table/schema';
 
 const App: React.FC = () => {
-    return <div className="helloworld"> React,Webpack4,Babel7!</div>;
-  };
-
-  export { App };
-  
+  return (
+    <div className="App">
+      <h1>Custom Table Component</h1>
+      <Table schema={tableSchema} />
+    </div>
+  );
+};
 
 ReactDOM.render(<App />, document.querySelector("#root"));
