@@ -2,11 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Table from './components/Table/Table';
 import { tableSchema } from './components/Table/schema';
+import './styles/app.css';
 
 const App: React.FC = () => {
   return (
     <div className="App">
-      <h1>Custom Table Component</h1>
+      <h1>Financial Instruments Data</h1>
       <Table schema={tableSchema} />
     </div>
   );

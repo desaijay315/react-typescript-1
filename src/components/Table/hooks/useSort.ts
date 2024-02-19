@@ -1,44 +1,98 @@
-import { useState, useEffect } from 'react';
-import { TableItem, TableSchema } from '../../../models/table';
-import { sortData } from '../../../utils/sorting';
+import { useReducer, useEffect } from 'react';
+import { TableItem } from '../../../models/table';
+import { initialData } from '../Table';
 
-export const useSort = (initialData: TableItem[], schema: TableSchema) => {
-  const [sortedData, setSortedData] = useState<TableItem[]>(initialData);
-  const [sortColumn, setSortColumn] = useState<string>('');
-  const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
 
-  useEffect(() => {
-    // Default sorting when component mounts
-    sortDataAndUpdate(initialData, 'assetClass', schema); // Sort by assetClass initially
-  }, [initialData, schema]);
+const initialState: SortState = {
+  data: [], // Initial data is empty, will be set via `setData`
+  sortConfig: {
+    assetClass: 'none', // Start with no sorting
+    price: 'none',
+    ticker: 'none',
+  },
+};
 
-  const sortDataAndUpdate = (data: TableItem[], columnName: string, schema: TableSchema) => {
-    const sorted = sortData(data, columnName, schema, sortDirection);
-    setSortedData(sorted);
-    setSortColumn(columnName);
-    console.log(columnName, 'columnName', sorted, 'sorted')
+// Action types for the reducer
+type SortAction =
+  | { type: 'TOGGLE_SORT'; columnName: 'assetClass' | 'price' | 'ticker' }
+ | {type: 'SET_DATA', payload: TableItem[]};
 
-  };
-
-  console.log(sortColumn, 'sortColumn', sortDirection, 'sortDirection' )
-  const sort = (columnName: string) => {
-    if (columnName === sortColumn) {
-      console.log(sortColumn, 'sortColumn', sortDirection, 'sortDirection' )
-
-      // Toggle sorting direction if the same column is clicked again
-      const newDirection = sortDirection === 'asc' ? 'desc' : 'asc';
-      setSortDirection(newDirection);
+  interface SortState {
+    data: TableItem[];
+    sortConfig: {
+      assetClass: 'asc' | 'desc' | 'none',
+      price: 'asc' | 'desc' | 'none',
+      ticker: 'asc' | 'desc' | 'none',
+    };
+  }
+  
+  
+  const sortDirectionToggle = (currentDirection: 'asc' | 'desc' | 'none'): 'asc' | 'desc' => {
+    if (currentDirection === 'none' || currentDirection === 'desc') {
+      return 'asc';
     } else {
-      // Sort data based on the clicked column
-      setSortColumn(columnName);
-      setSortDirection('asc'); // Reset sorting direction when changing column
+      return 'desc';
     }
   };
 
-  useEffect(() => {
-    // Sort data whenever sortColumn or sortDirection changes
-    sortDataAndUpdate(sortedData, sortColumn, schema);
-  }, [sortColumn, sortDirection, schema, sortedData]);
+  const tableSortReducer = (state: SortState, action: SortAction): SortState => {
+    switch (action.type) {
+      case 'TOGGLE_SORT':
+        const newSortConfig = { ...state.sortConfig };
+        let sortedData = [...state.data];
+  
+        if (action.columnName === 'assetClass') {
+          const assetClassOrder = ['Equities', 'Macro', 'Credit'];
+          newSortConfig.assetClass = sortDirectionToggle(state.sortConfig.assetClass);
+          sortedData.sort((a, b) => {
+            const orderA = assetClassOrder.indexOf(a.assetClass);
+            const orderB = assetClassOrder.indexOf(b.assetClass);
+            return newSortConfig.assetClass === 'asc' ? orderA - orderB : orderB - orderA;
+          });
+        }
+  
+        // Repeat similar adjustments for 'price' and 'ticker'
+        if (action.columnName === 'price') {
+          newSortConfig.price = state.sortConfig.price === 'none' ? 'desc' : sortDirectionToggle(state.sortConfig.price);
+          sortedData.sort((a, b) => newSortConfig.price === 'asc' ? a.price - b.price : b.price - a.price);
+        }
+  
+        if (action.columnName === 'ticker') {
+          newSortConfig.ticker = state.sortConfig.ticker === 'none' ? 'desc' : sortDirectionToggle(state.sortConfig.ticker);
+          sortedData.sort((a, b) => newSortConfig.ticker === 'asc' ? a.ticker.localeCompare(b.ticker) : b.ticker.localeCompare(a.ticker));
+        }
+  
+        return { ...state, data: sortedData, sortConfig: newSortConfig };
+  
+      case 'SET_DATA':
+        return {
+          ...state,
+          data: action.payload,
+          sortConfig: {
+            assetClass: 'none',
+            price: 'none',
+            ticker: 'none',
+          }
+        };
+  
+      default:
+        return state;
+    }
+  }
+    
 
-  return { sortedData, sort };
-};
+  export function useSort(initialData: TableItem[]) {
+    const [{ data, sortConfig }, dispatch] = useReducer(tableSortReducer, initialState);
+  
+      // Effect to set initial data
+  useEffect(() => {
+    dispatch({ type: 'SET_DATA', payload: initialData });
+  }, [initialData]);
+
+    const toggleSort = (columnName: 'assetClass' | 'price' | 'ticker') => {
+      dispatch({ type: 'TOGGLE_SORT', columnName });
+    };
+  
+    return { sortedData: data, toggleSort, sortConfig };
+  }
+    
