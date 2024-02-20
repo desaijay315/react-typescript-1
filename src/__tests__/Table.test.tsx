@@ -18,7 +18,7 @@ beforeEach(() => {
   
     (hooks.useTableData as jest.Mock).mockReturnValue({
       data: mockData,
-      fetchData: jest.fn(() => Promise.resolve(mockData)),
+      InstrumentsData: jest.fn(() => Promise.resolve(mockData)),
     });
   
     (hooks.useSort as jest.Mock).mockImplementation(data => ({
@@ -54,7 +54,7 @@ test('sorts by asset class on column header click', async () => {
     // Mock useTableData to return predefined data
     (hooks.useTableData as jest.Mock).mockReturnValue({
         data: mockData,
-        fetchData: jest.fn(() => Promise.resolve(mockData)),
+        InstrumentsData: jest.fn(() => Promise.resolve(mockData)),
     });
 
 
@@ -78,7 +78,7 @@ test('sorts by price on column header click', async () => {
 
     (hooks.useTableData as jest.Mock).mockReturnValue({
         data: mockData,
-        fetchData: jest.fn(() => Promise.resolve(mockData)),
+        InstrumentsData: jest.fn(() => Promise.resolve(mockData)),
     });
 
     (hooks.useSort as jest.Mock).mockImplementation(() => ({
@@ -102,7 +102,7 @@ test('sorts by ticker on column header click', async () => {
 
     (hooks.useTableData as jest.Mock).mockReturnValue({
         data: mockData,
-        fetchData: jest.fn(() => Promise.resolve(mockData)),
+        InstrumentsData: jest.fn(() => Promise.resolve(mockData)),
     });
 
 
@@ -128,7 +128,7 @@ test('renders negative price values with negativePrice class', async () => {
 
     (hooks.useTableData as jest.Mock).mockReturnValue({
         data: mockData,
-        fetchData: jest.fn(() => Promise.resolve(mockData)),
+        InstrumentsData: jest.fn(() => Promise.resolve(mockData)),
     });
     
     (hooks.useSort as jest.Mock).mockReturnValue({

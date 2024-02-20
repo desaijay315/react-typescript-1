@@ -88,5 +88,20 @@ export const mockData = [
       "ticker": "PSI",
       "price": 2997.78,
       "assetClass": "Credit"
-    }
+    },
+    {
+      "ticker": "PSI",
+      "price": -2997.78,
+      "assetClass": "Credit"
+    },
+    {
+      "ticker": "OMEGA",
+      "price": -2306.35,
+      "assetClass": "Equities"
+    },
+    {
+      "ticker": "NU",
+      "price": -2744.89,
+      "assetClass": "Macro"
+    },
   ]

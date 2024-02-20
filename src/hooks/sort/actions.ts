@@ -1,7 +1,6 @@
-import { SET_DATA, TOGGLE_SORT } from '../../constants';
-import { TableItem } from '../../components/Table/types/table';
-import { ColumnName } from './types';
-
+import { SET_DATA, TOGGLE_SORT } from '../../utils/constants';
+import { TableItem } from '../../components/Table/types';
+import { ColumnName } from '../../common/types';
 
 
 export const setData = (payload: TableItem[]) => ({

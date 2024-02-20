@@ -1,9 +1,9 @@
 import { useReducer, useEffect } from 'react';
-import { TableItem } from '../../components/Table/types/table';
-import { tableSortReducer } from '../sort/tableSortReducer';
+import { TableItem } from '../../components/Table/types';
+import { tableSortReducer } from './sortReducer';
 import { initialState } from '../sort/initialState';
-import { ColumnName } from './types';
-import { SET_DATA, TOGGLE_SORT } from '../../constants';
+import { SET_DATA, TOGGLE_SORT } from '../../utils/constants';
+import { ColumnName } from '../../common/types';
 
 
   export function useSort(initialData: TableItem[]) {

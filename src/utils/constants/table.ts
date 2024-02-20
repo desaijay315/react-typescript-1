@@ -7,3 +7,7 @@ export const TICKER = 'ticker';
 export const ASC = 'asc';
 export const DESC = 'desc';
 export const NONE = 'none';
+export const UP_ARROW = '↑';
+export const DOWN_ARROW = '↓';
+export const NEGATIVE_PRICE = 'negativePrice';
+export const POSITIVE_PRICE = 'positivePrice';

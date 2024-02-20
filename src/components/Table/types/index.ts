@@ -1,18 +1,17 @@
+import { SortingOrder } from '../../../common/types';
 
-   export interface TableColumn {
+export interface TableColumn {
     name: string;
     label: string;
-    sortingOrder?: 'asc' | 'desc';
+    sortingOrder?: SortingOrder;
     sortingPriority?: string[];
   }
-  
+
   export interface TableSchema {
     columns: TableColumn[];
   }
-  
 
-    // Table item type
-export interface TableItem {
+export type TableItem = {
   ticker: string;
   price: number;
   assetClass: string;

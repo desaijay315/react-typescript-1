@@ -1,40 +1,40 @@
 .table {
-  border: 1px solid #ddd; /* Example border property */
-  width: 100%; /* Full width */
-  background-color: #f9f9f9; /* Light grey background */
-  color: #333; /* Dark text color */
-  font-family: Arial, sans-serif; /* Custom font */
-  font-size: 16px; /* Slightly larger font size */
-  border-radius: 8px; /* Rounded corners for the table */
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow */
+  border: 1px solid #ddd;
+  width: 100%;
+  background-color: #f9f9f9;
+  color: #333;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .table th, .table td {
-  padding: 8px; /* Spacing inside cells */
-  text-align: left; /* Align text to the left */
-  vertical-align: middle; /* Align text vertically in the middle */
+  padding: 8px;
+  text-align: left;
+  vertical-align: middle;
 }
 
-/* Custom styling for the header */
 .thead-dark th {
-  background-color: #343a40; /* Dark background for header */
-  color: #fff; /* White text color */
+  background-color: #343a40;
+  color: #fff;
 }
 
 
 .equities {
   background-color: blue;
-  color: white; /* Ensures text is readable on blue background */
+  color: white;
 }
 
 .credit {
   background-color: green;
-  color: white; /* Ensures text is readable on green background */
+  color: white;
 }
 
 .macro {
   background-color: white;
-  color: black; /* Default, but added for clarity */
+  color: black;
 }
 
 .positivePrice {

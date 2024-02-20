@@ -1,12 +1,14 @@
 .App {
-    text-align: center; /* Center aligns all content within the App div */
-    padding: 20px; /* Adds some padding around the App for better spacing */
-  }
+  text-align: center;
+  padding: 20px;
+}
   
-  .App h1 {
-    font-size: 24px; /* Adjusts the font size of the heading */
-    color: #333; /* Sets the text color */
-    margin: 0; /* Removes default margin */
-    padding: 20px 0; /* Adds padding above and below the heading */
-  }
-  
+.App h1 {
+  font-size: 24px;
+  color: #333;
+  margin: 0;
+  padding: 20px 0;
+  background-color: #708090;
+  color: #fff;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}

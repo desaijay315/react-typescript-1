@@ -1,36 +1,34 @@
-import { TableItem } from '../../components/Table/types/table';
-import { ASSET_CLASS,PRICE, TICKER } from '../../constants';
+import { sortDirection } from '../../common/types';
+import { TableItem } from '../../components/Table/types';
+import { ASSET_CLASS,PRICE, TICKER } from '../../utils/constants';
+import { TOGGLE_SORT, SET_DATA } from '../../utils/constants';
 
 export enum SortActionType {
     SORT = 'SORT',
   }
-  
 
-// Define the state structure for useReducer
+
+  //useReducer structure
 export interface SortState {
   data: TableItem[];
   sortConfig: {
-    assetClass: 'asc' | 'desc' | 'none',
-    price: 'asc' | 'desc' | 'none',
-    ticker: 'asc' | 'desc' | 'none',
+    assetClass: sortDirection,
+    price: sortDirection,
+    ticker: sortDirection,
   };
 }
 
 
-// Action types for the reducer
+// Action types of reducer
 export type SortAction =
-  | { type: 'TOGGLE_SORT'; columnName: 'assetClass' | 'price' | 'ticker' }
- | {type: 'SET_DATA', payload: TableItem[]};
+  | { type: typeof TOGGLE_SORT ; columnName: 'assetClass' | 'price' | 'ticker' }
+ | {type: typeof SET_DATA, payload: TableItem[]};
 
 export interface SortState {
     data: TableItem[];
     sortConfig: {
-      assetClass: 'asc' | 'desc' | 'none',
-      price: 'asc' | 'desc' | 'none',
-      ticker: 'asc' | 'desc' | 'none',
+      assetClass: sortDirection,
+      price: sortDirection,
+      ticker: sortDirection,
     };
   }
-  
-  
-
-  export type ColumnName = typeof ASSET_CLASS | typeof PRICE | typeof TICKER;

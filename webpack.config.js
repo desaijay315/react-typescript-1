@@ -7,7 +7,6 @@ const isProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {
   mode: isProduction ? 'production' : 'development',
-  // Entry point remains the same
   entry: './src',
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -16,7 +15,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(ts|tsx)$/, // Add TypeScript loader
+        test: /\.(ts|tsx)$/,
         exclude: /node_modules/,
         use: {
           loader: "ts-loader"
