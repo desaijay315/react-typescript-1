@@ -1,8 +1,8 @@
 {
-  "name": "react_web",
+  "name": "financial_instruments_data",
   "version": "1.0.0",
-  "description": "",
-  "main": "webpack.config.js",
+  "description": "Data Table Displaying Financial Instruments Data",
+  "main": "src/index.ts",
   "scripts": {
     "start": "webpack serve --open --mode development",
     "build": "cross-env NODE_ENV=production webpack --mode production",
