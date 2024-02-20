@@ -7,7 +7,7 @@ import { mockData } from './testData/mockData';
 
 // Mock the hooks
 jest.mock('../hooks', () => ({
-    useTableData: jest.fn(),
+    useFetchData: jest.fn(),
     useSort: jest.fn()
   }));
 
@@ -16,7 +16,7 @@ describe('Financial Instruments test cases', () => {
     
 beforeEach(() => {
   
-    (hooks.useTableData as jest.Mock).mockReturnValue({
+    (hooks.useFetchData as jest.Mock).mockReturnValue({
       data: mockData,
       InstrumentsData: jest.fn(() => Promise.resolve(mockData)),
     });
@@ -51,8 +51,8 @@ test('sorts by asset class on column header click', async () => {
     
     const toggleSort = jest.fn();
 
-    // Mock useTableData to return predefined data
-    (hooks.useTableData as jest.Mock).mockReturnValue({
+    // Mock useFetchData to return predefined data
+    (hooks.useFetchData as jest.Mock).mockReturnValue({
         data: mockData,
         InstrumentsData: jest.fn(() => Promise.resolve(mockData)),
     });
@@ -76,7 +76,7 @@ test('sorts by asset class on column header click', async () => {
 test('sorts by price on column header click', async () => {
     const toggleSort = jest.fn();
 
-    (hooks.useTableData as jest.Mock).mockReturnValue({
+    (hooks.useFetchData as jest.Mock).mockReturnValue({
         data: mockData,
         InstrumentsData: jest.fn(() => Promise.resolve(mockData)),
     });
@@ -100,7 +100,7 @@ test('sorts by ticker on column header click', async () => {
     
     const toggleSort = jest.fn();
 
-    (hooks.useTableData as jest.Mock).mockReturnValue({
+    (hooks.useFetchData as jest.Mock).mockReturnValue({
         data: mockData,
         InstrumentsData: jest.fn(() => Promise.resolve(mockData)),
     });
@@ -126,7 +126,7 @@ test('renders negative price values with negativePrice class', async () => {
         { assetClass: 'Credit', price: -100, ticker: 'BETA' }
     ];
 
-    (hooks.useTableData as jest.Mock).mockReturnValue({
+    (hooks.useFetchData as jest.Mock).mockReturnValue({
         data: mockData,
         InstrumentsData: jest.fn(() => Promise.resolve(mockData)),
     });

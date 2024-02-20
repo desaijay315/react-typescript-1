@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
-import { useTableData, useSort } from '../../hooks';
+import { useFetchData, useSort } from '../../hooks';
 import '../../styles/Table.css';
 import { ASC, ASSET_CLASS, PRICE, TICKER, UP_ARROW, DOWN_ARROW, NEGATIVE_PRICE, POSITIVE_PRICE } from '../../utils/constants';
 
 const Table = () => {
- const { data, InstrumentsData } = useTableData();
+ const { data, InstrumentsData } = useFetchData();
  const { sortedData, toggleSort, sortConfig } = useSort(data);
 
  useEffect(() => {

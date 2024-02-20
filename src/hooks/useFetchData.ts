@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { InstrumentsData } from '../services/instruments.api';
 import { TableItem } from '../components/Table/types';
 
-export const useTableData = () => {
+export const useFetchData = () => {
     const [data, setData] = useState<TableItem[]>([]);
   
     useEffect(() => {

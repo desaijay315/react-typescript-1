@@ -1,13 +1,13 @@
 import { useReducer, useEffect } from 'react';
 import { TableItem } from '../../components/Table/types';
-import { tableSortReducer } from './sortReducer';
+import { sortReducer } from './sortReducer';
 import { initialState } from '../sort/initialState';
 import { SET_DATA, TOGGLE_SORT } from '../../utils/constants';
 import { ColumnName } from '../../common/types';
 
 
   export function useSort(initialData: TableItem[]) {
-    const [{ data, sortConfig }, dispatch] = useReducer(tableSortReducer, initialState);
+    const [{ data, sortConfig }, dispatch] = useReducer(sortReducer, initialState);
 
     //dispatch to get the initial data
   useEffect(() => {

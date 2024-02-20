@@ -17,7 +17,7 @@ const sortFunctions: { [key in ColumnName]: SortFunction } = {
 };  
 
 
-export const tableSortReducer = (state: SortState, action: SortAction): SortState => {
+export const sortReducer = (state: SortState, action: SortAction): SortState => {
     switch (action.type) {
       case TOGGLE_SORT:
         const column = action.columnName;
@@ -50,4 +50,4 @@ export const tableSortReducer = (state: SortState, action: SortAction): SortStat
         return state;
     }
   }
-    
+ 

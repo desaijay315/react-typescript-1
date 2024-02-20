@@ -1,6 +1,5 @@
-import { sortDirection } from '../../common/types';
+import { ColumnName, sortDirection } from '../../common/types';
 import { TableItem } from '../../components/Table/types';
-import { ASSET_CLASS,PRICE, TICKER } from '../../utils/constants';
 import { TOGGLE_SORT, SET_DATA } from '../../utils/constants';
 
 export enum SortActionType {
@@ -21,7 +20,7 @@ export interface SortState {
 
 // Action types of reducer
 export type SortAction =
-  | { type: typeof TOGGLE_SORT ; columnName: 'assetClass' | 'price' | 'ticker' }
+  | { type: typeof TOGGLE_SORT ; columnName: ColumnName }
  | {type: typeof SET_DATA, payload: TableItem[]};
 
 export interface SortState {
