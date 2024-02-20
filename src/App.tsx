@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Table from './components/Table/Table';
-import './styles/app.css';
+import './styles/App.css';
 
 const App: React.FC = () => {
   return (
