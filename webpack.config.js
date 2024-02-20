@@ -17,7 +17,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].js'
   }: {
-    publicPath: '/container/latest',
+    publicPath: '/container/latest/',
     filename: '[name].[contenthash].js'
   } ,
   module: {
