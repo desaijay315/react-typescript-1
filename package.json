@@ -10,7 +10,7 @@
     "check-types": "tsc --noEmit",
     "check-types:watch": "tsc --noEmit --watch",
     "dev": "concurrently \"yarn start\" \"yarn check-types:watch\"",
-    "jest": "jest",
+    "test": "jest",
     "test:coverage": "jest --coverage"
   },
   "keywords": [],
