@@ -13,11 +13,11 @@ on:
     branches:
       - main
     paths:
-      - 'src/**'
+      - '.'
  
 defaults:
   run:
-    working-directory: src/**
+    working-directory: .
  
 jobs:
   build:
