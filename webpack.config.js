@@ -4,14 +4,22 @@ const path = require('path');
 
 // Determine the mode based on NODE_ENV
 const isProduction = process.env.NODE_ENV === 'production';
+const isDevelopement = process.env.NODE_ENV === 'development';
+const isDeployment = process.env.NODE_ENV === 'deployment';
 
 module.exports = {
-  mode: isProduction ? 'production' : 'development',
+  mode: isProduction || isDeployment ? 'production' : 'development',
   entry: './src',
-  output: {
-    publicPath: isProduction ? '/container/latest/' : path.resolve(__dirname, 'dist'),
-    filename: isProduction ? '[name].[contenthash].js' : '[name].js'
-  },
+  output: isProduction ? {
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].[contenthash].js'
+  } : isDevelopement ? {
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].js'
+  }: {
+    publicPath: '/container/latest',
+    filename: '[name].[contenthash].js'
+  } ,
   module: {
     rules: [
       {
@@ -44,7 +52,7 @@ module.exports = {
     })
   ],
   optimization: {
-    minimize: isProduction, // Minify only in production
+    minimize: isProduction || isDeployment, // Minify only in production
     minimizer: [new TerserPlugin()], // Use TerserPlugin for minification in production
     splitChunks: {
       chunks: 'all', 
