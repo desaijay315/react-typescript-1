@@ -9,7 +9,7 @@ module.exports = {
   mode: isProduction ? 'production' : 'development',
   entry: './src',
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    publicPath: isProduction ? '/container/latest/' : path.resolve(__dirname, 'dist'),
     filename: isProduction ? '[name].[contenthash].js' : '[name].js'
   },
   module: {
